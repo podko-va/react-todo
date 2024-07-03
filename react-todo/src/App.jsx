@@ -6,20 +6,16 @@ import TodoList from './TodoList'
 import AddTodoForm from './AddTodoForm'
 
 
-// const todoListItem = [
-//   { id: 1, title: 'Finish React assignment' },
-//   { id: 2, title: 'Read book' },
-//   { id: 3, title: 'Go to slip' },
-// ];//
-
 function App() {
+  const [newTodo, setNewTodo] =  useState([]);
    return (
     <>
       <div>
         <h1>Todo list:</h1>
-        <AddTodoForm />
+        <AddTodoForm onAddTodo={setNewTodo} />
         <hr />
         <TodoList />
+        <p>{newTodo}</p>
       </div>
     </>
   )
