@@ -1,21 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import InputWithLabel from "./InputWithLabel"
 
 
-function AddTodoForm(props) {
+function AddTodoForm({ onAddTodo, todos  }) {
+    const [todoTitle,setTodoTitle] = useState('');
+
+    const handleTitleChange = (title) =>{
+        setTodoTitle(title)
+    };
+    
     const handleAddTodo = (event) => {
-        event.preventDefault(); // Prevent the default form submission
-        const todoTitle = event.target.title.value; // Retrieve the input value
-        console.log(todoTitle);
-        props.onAddTodo(todoTitle); // Call the callback function passed via props
-        
-        };
+        event.preventDefault();
+        if (todoTitle.trim() === '') {
+            alert('Todo title cannot be empty');
+            return;
+          }
+          if (todos.some(todo => todo.title === todoTitle)) {
+            alert('Todo title already exists');
+            return;
+          }
+        onAddTodo(todoTitle);
+        setTodoTitle(''); // Clear the input field after adding the todo
+      };
         
     
     return (
         <div>
             <form onSubmit={handleAddTodo}>
-                <label htmlFor="title">New title  </label>
-                <input type="text" name="title"/>
+                <InputWithLabel
+                    id = "title"
+                    label = "New title   "
+                    value={todoTitle}
+                    type="text"
+                    onInputChange={handleTitleChange}
+                />
                 <button>Add</button>
             </form>
         </div>

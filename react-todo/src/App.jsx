@@ -7,15 +7,25 @@ import AddTodoForm from './AddTodoForm'
 
 
 function App() {
-  const [newTodo, setNewTodo] =  useState([]);
+  //const [newTodo, setNewTodo] =  useState([]);
+  const [todoList, setTodoList] = useState([]);
+
+  const addTodo = (todoTitle) => {
+    setTodoList([...todoList, { id: Date.now(), title: todoTitle }]);
+  };
+
+  const removeTodo = (id) => {
+    const updatedTodoList = todoList.filter(todo => todo.id !== id);
+    setTodoList(updatedTodoList);
+  };
+
    return (
     <>
       <div>
         <h1>Todo list:</h1>
-        <AddTodoForm onAddTodo={setNewTodo} />
+        <AddTodoForm onAddTodo={addTodo} todos={todoList} />
         <hr />
-        <TodoList />
-        <p>{newTodo}</p>
+        <TodoList todos={todoList} onRemoveTodo={removeTodo} />
       </div>
     </>
   )
