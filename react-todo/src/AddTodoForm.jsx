@@ -5,9 +5,10 @@ import InputWithLabel from "./InputWithLabel"
 function AddTodoForm({ onAddTodo, todos  }) {
     const [todoTitle,setTodoTitle] = useState('');
 
-    const handleTitleChange = (title) =>{
-        setTodoTitle(title)
-    };
+    const handleTitleChange = (event) =>{
+        const newTodoTitle = event.target.value;
+        setTodoTitle(newTodoTitle);
+      }
     
     const handleAddTodo = (event) => {
         event.preventDefault();
@@ -19,9 +20,15 @@ function AddTodoForm({ onAddTodo, todos  }) {
             alert('Todo title already exists');
             return;
           }
-        onAddTodo(todoTitle);
+        if (todoTitle.length > 100) {
+            alert('Todo title cannot exceed 100 characters');
+            return;
+        }
+        console.log('todoTitle');
+        onAddTodo({ title: todoTitle, id: Date.now() });
         setTodoTitle(''); // Clear the input field after adding the todo
       };
+
         
     
     return (
@@ -34,6 +41,7 @@ function AddTodoForm({ onAddTodo, todos  }) {
                     type="text"
                     onInputChange={handleTitleChange}
                 />
+
                 <button>Add</button>
             </form>
         </div>
