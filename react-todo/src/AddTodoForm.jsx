@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import InputWithLabel from "./InputWithLabel"
 
 
 function AddTodoForm({ onAddTodo, todos  }) {
     const [todoTitle,setTodoTitle] = useState('');
-
-    const handleTitleChange = (event) =>{
-        const newTodoTitle = event.target.value;
-        setTodoTitle(newTodoTitle);
-      }
+    
+    const handleTitleChange = (title) => {
+        setTodoTitle(title);
+      };
     
     const handleAddTodo = (event) => {
         event.preventDefault();
@@ -24,24 +23,22 @@ function AddTodoForm({ onAddTodo, todos  }) {
             alert('Todo title cannot exceed 100 characters');
             return;
         }
-        console.log('todoTitle');
-        onAddTodo({ title: todoTitle, id: Date.now() });
-        setTodoTitle(''); // Clear the input field after adding the todo
+        console.log(todoTitle);
+        onAddTodo(todoTitle);
+        setTodoTitle(''); 
+        
       };
 
-        
-    
     return (
         <div>
             <form onSubmit={handleAddTodo}>
                 <InputWithLabel
-                    id = "title"
                     label = "New title   "
                     value={todoTitle}
                     type="text"
                     onInputChange={handleTitleChange}
+                    placeholder="Enter todo title"  
                 />
-
                 <button>Add</button>
             </form>
         </div>

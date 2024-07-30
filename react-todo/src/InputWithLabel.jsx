@@ -1,13 +1,13 @@
-import React, { children, useEffect, useRef } from 'react';
+import React, { children, useEffect, useRef, forwardRef } from 'react';
 
 
-function InputWithLabel({ id, value, onInputChange, type = 'text', children }) {
+const InputWithLabel = forwardRef(({ id, value, onInputChange, type = 'text', children }, ref) => {
     const inputRef = useRef(null);
 
     useEffect (()=>{
         inputRef.current.focus()
     },[]);
-    
+
   return (
     <>
       <label htmlFor={id}>{children}</label>
@@ -20,7 +20,7 @@ function InputWithLabel({ id, value, onInputChange, type = 'text', children }) {
       />
     </>
   );
-}
+});
 
 
 export default InputWithLabel;

@@ -34,12 +34,12 @@ function App() {
 
    return (
     <>
+      <div>
         <h1>Todo list:</h1>
         <AddTodoForm onAddTodo={addTodo} todos={todoList} />
         <hr />
         <TodoList todos={todoList} onRemoveTodo={removeTodo} />
       </div>
-
     </>
   )
 }
