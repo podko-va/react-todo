@@ -4,23 +4,51 @@ import './App.css'
 import TodoList from './TodoList'
 import AddTodoForm from './AddTodoForm'
 
-function useSemiPersistentState(){
-  const getIniListItem = () =>{
-    const savedTodoList = localStorage.getItem("savedTodoList");
-    return savedTodoList ? JSON.parse(savedTodoList) : []; 
-  }
-  const [todoList, setTodoList] =  useState(getIniListItem());
+
+function App() {
+  // const getIniListItem = () =>{
+  //   const savedTodoList = localStorage.getItem("savedTodoList");
+  //   return savedTodoList ? JSON.parse(savedTodoList) : []; 
+  // }
+  // const [todoList, setTodoList] =  useState(getIniListItem());
+  const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]);
+  
+  useEffect(() => {
+    console.log("Begin of useEffect");
+
+    const fetchData = new Promise((resolve, reject) => {
+      // Simulating a delay
+      setTimeout(() => {
+        resolve({
+          data: {
+            todoList: [] 
+          }
+        });
+      }, 2000); // a 2-second delay
+    });
+
+    // Handling the promise
+    fetchData
+      .then(message => {
+        console.log(message);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    return () => {
+      console.log("End of useEffect");
+    };
+  }, []);
+  //useEffect(() => {}, []);
 
   useEffect(() => {
     localStorage.setItem("savedTodoList",JSON.stringify(todoList))
   }, [todoList]);
-  return [todoList,setTodoList];
-
-}
-
-
-function App() {
-  const [todoList,setTodoList] = useSemiPersistentState();
 
   const addTodo = (todoTitle) => {
     setTodoList([...todoList, { id: Date.now(), title: todoTitle }]);
