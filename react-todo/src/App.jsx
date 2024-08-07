@@ -6,16 +6,19 @@ import AddTodoForm from './AddTodoForm'
 
 
 function App() {
-  // const getIniListItem = () =>{
-  //   const savedTodoList = localStorage.getItem("savedTodoList");
-  //   return savedTodoList ? JSON.parse(savedTodoList) : []; 
-  // }
+  const getIniListItem = () =>{
+    const savedTodoList = localStorage.getItem("savedTodoList");
+    return savedTodoList ? JSON.parse(savedTodoList) : []; 
+  }
   // const [todoList, setTodoList] =  useState(getIniListItem());
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(getIniListItem());
+  const [ isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!isLoading) {
     localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-  }, [todoList]);
+  }},
+  [todoList,isLoading]);
   
   useEffect(() => {
     console.log("Begin of useEffect");
@@ -25,7 +28,7 @@ function App() {
       setTimeout(() => {
         resolve({
           data: {
-            todoList: [] 
+            todoList: getIniListItem() 
           }
         });
       }, 2000); // a 2-second delay
@@ -33,8 +36,10 @@ function App() {
 
     // Handling the promise
     fetchData
-      .then(message => {
-        console.log(message);
+      .then(response => {
+        console.log("Fetched data:", response);
+        setTodoList(response.data.todoList);
+        setIsLoading(false);
       })
       .catch(error => {
         console.error(error);
@@ -45,10 +50,6 @@ function App() {
     };
   }, []);
   //useEffect(() => {}, []);
-
-  useEffect(() => {
-    localStorage.setItem("savedTodoList",JSON.stringify(todoList))
-  }, [todoList]);
 
   const addTodo = (todoTitle) => {
     setTodoList([...todoList, { id: Date.now(), title: todoTitle }]);
@@ -64,9 +65,16 @@ function App() {
     <>
       <div>
         <h1>Todo list:</h1>
-        <AddTodoForm onAddTodo={addTodo} todos={todoList} />
-        <hr />
-        <TodoList todos={todoList} onRemoveTodo={removeTodo} />
+        {isLoading ? ( // Show loading sign
+          <p>Loading...</p>
+        ) :
+        (
+          <>
+            <AddTodoForm onAddTodo={addTodo} todos={todoList} />
+            <hr />
+            <TodoList todos={todoList} onRemoveTodo={removeTodo} />
+          </>
+        )}
       </div>
     </>
   )
