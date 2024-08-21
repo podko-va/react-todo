@@ -11,45 +11,53 @@ function App() {
     return savedTodoList ? JSON.parse(savedTodoList) : []; 
   }
   // const [todoList, setTodoList] =  useState(getIniListItem());
+  //airtable
+
+
+
   const [todoList, setTodoList] = useState(getIniListItem());
   const [ isLoading, setIsLoading] = useState(true);
+
+  const fetchdata = async() =>{
+    const option  = {
+      method: 'GET',
+      headers:{
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+      },
+    };
+
+    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+
+    try {
+      const res = fetch(url,option);
+      if (!res.ok){
+        throw new Error(`Error: ${res.status}`)
+      }
+      const data = await res.json();
+      
+      const fetchDataFromAirtable = data.records.map(record =>({
+        id:record.id,
+        title:record.fields.title
+      }));
+
+      setTodoList(fetchDataFromAirtable)
+      setIsLoading(false)
+
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  useEffect(()=>{
+    fetchdata();
+  },[]);
 
   useEffect(() => {
     if (!isLoading) {
     localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-  }},
-  [todoList,isLoading]);
-  
-  useEffect(() => {
-    console.log("Begin of useEffect");
+  }
+  }, [todoList,isLoading]);
 
-    const fetchData = new Promise((resolve, reject) => {
-      // Simulating a delay
-      setTimeout(() => {
-        resolve({
-          data: {
-            todoList: getIniListItem() 
-          }
-        });
-      }, 2000); // a 2-second delay
-    });
-
-    // Handling the promise
-    fetchData
-      .then(response => {
-        console.log("Fetched data:", response);
-        setTodoList(response.data.todoList);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-
-    return () => {
-      console.log("End of useEffect");
-    };
-  }, []);
-  //useEffect(() => {}, []);
 
   const addTodo = (todoTitle) => {
     setTodoList([...todoList, { id: Date.now(), title: todoTitle }]);
