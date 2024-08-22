@@ -18,23 +18,27 @@ function App() {
   const [todoList, setTodoList] = useState(getIniListItem());
   const [ isLoading, setIsLoading] = useState(true);
 
+  const apiToken = import.meta.env.VITE_AIRTABLE_API_TOKEN;
+  const baseId = import.meta.env.VITE_AIRTABLE_BASE_ID;
+  const tableName = import.meta.env.VITE_TABLE_NAME;
+
   const fetchdata = async() =>{
     const option  = {
       method: 'GET',
       headers:{
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+        Authorization: `Bearer ${apiToken}`,
       },
     };
-
-    const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
-
+    const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
+    
     try {
-      const res = fetch(url,option);
+      const res = await fetch(url,option);
       if (!res.ok){
         throw new Error(`Error: ${res.status}`)
       }
       const data = await res.json();
-      
+
+      console.log(data);
       const fetchDataFromAirtable = data.records.map(record =>({
         id:record.id,
         title:record.fields.title
@@ -68,8 +72,7 @@ function App() {
     setTodoList(updatedTodoList);
   };
 
-
-   return (
+ return (
     <>
       <div>
         <h1>Todo list:</h1>
