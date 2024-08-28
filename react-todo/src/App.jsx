@@ -117,6 +117,7 @@ function App() {
             </>
           }
           />
+          <Route path='/new' element={<h1>New todo list:</h1>}/>
         </Routes>
       </BrowserRouter>
     )
