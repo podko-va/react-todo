@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import viteLogo from '/vite.svg'
 import './App.css'
 import TodoList from './TodoList'
@@ -98,22 +99,28 @@ function App() {
   };
 
  return (
-    <>
-      <div>
-        <h1>Todo list:</h1>
-        {isLoading ? ( // Show loading sign
-          <p>Loading...</p>
-        ) :
-        (
-          <>
-            <AddTodoForm onAddTodo={addTodo} todos={todoList} />
-            <hr />
-            <TodoList todos={todoList} onRemoveTodo={removeTodo} />
-          </>
-        )}
-      </div>
-    </>
-  )
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element={
+            <>
+              <h1>Todo list:</h1>
+                {isLoading ? ( // Show loading sign
+                  <p>Loading...</p>
+                ) :
+                (
+                  <>
+                    <AddTodoForm onAddTodo={addTodo} todos={todoList} />
+                    <hr />
+                    <TodoList todos={todoList} onRemoveTodo={removeTodo} />
+                  </>
+                )}
+            </>
+          }
+          />
+          <Route path='/new' element={<h1>New todo list:</h1>}/>
+        </Routes>
+      </BrowserRouter>
+    )
 }
 
 export default App
