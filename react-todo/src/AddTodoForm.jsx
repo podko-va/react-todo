@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import InputWithLabel from "./InputWithLabel"
+import InputWithLabel from "./InputWithLabel";
+import style from './AddTodoForm.module.css';
 
 
 function AddTodoForm({ onAddTodo, todos  }) {
@@ -23,6 +24,10 @@ function AddTodoForm({ onAddTodo, todos  }) {
             alert('Todo title cannot exceed 100 characters');
             return;
         }
+        if (todoTitle.length < 3) {
+          alert('The Todo title must be longer');
+          return;
+      }
         console.log(todoTitle);
         onAddTodo(todoTitle);
         setTodoTitle(''); 
@@ -30,16 +35,16 @@ function AddTodoForm({ onAddTodo, todos  }) {
       };
 
     return (
-        <div>
+      <div className={style.container}>
             <form onSubmit={handleAddTodo}>
-                <InputWithLabel
+                <InputWithLabel 
                     label = "New title   "
                     value={todoTitle}
                     type="text"
                     onInputChange={handleTitleChange}
                     placeholder="Enter todo title"  
                 />
-                <button>Add</button>
+                <button className={style.button_add}>Add</button>
             </form>
         </div>
     );

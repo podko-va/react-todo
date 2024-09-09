@@ -1,5 +1,5 @@
 import React, { children, useEffect, useRef, forwardRef } from 'react';
-
+import style from './AddTodoForm.module.css';
 
 const InputWithLabel = forwardRef(({ id, value, onInputChange, type = 'text', children }, ref) => {
     const inputRef = useRef(null);
@@ -11,7 +11,7 @@ const InputWithLabel = forwardRef(({ id, value, onInputChange, type = 'text', ch
   return (
     <>
       <label htmlFor={id}>{children}</label>
-      <input    
+      <input className={style.button_add_input}   
         id={id}
         type={type}
         value={value}

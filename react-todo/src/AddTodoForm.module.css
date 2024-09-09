@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column; 
+    margin: 0 auto; 
+    padding: 30px;
+}
+
+.button_add_input{
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    margin-right: 16px;
+    font-size: 18px;
+    align-items: left; 
+    width: 100%-40px;
+}
+
+.button_add {
+    display: inline-block;
+    background: #5b548a;
+    color: #fff;
+    padding: 5px 50px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
