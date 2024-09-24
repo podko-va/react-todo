@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import TodoList from './TodoList'
 import AddTodoForm from './AddTodoForm'
+import './App.css';
 
 const apiToken = import.meta.env.VITE_AIRTABLE_API_TOKEN;
 const baseId = import.meta.env.VITE_AIRTABLE_BASE_ID;
@@ -99,27 +100,39 @@ function App() {
   };
 
  return (
-    <BrowserRouter>
+  
+    <BrowserRouter >
         <Routes>
           <Route path='/' element={
-            <>
-              <h1>Todo list:</h1>
-                {isLoading ? ( // Show loading sign
-                  <p>Loading...</p>
-                ) :
-                (
-                  <>
-                    <AddTodoForm onAddTodo={addTodo} todos={todoList} />
-                    <hr />
-                    <TodoList todos={todoList} onRemoveTodo={removeTodo} />
+            <div className="root">
+              <div className="card">
+                <>            
+                  <h1>Todo list:</h1>
+                    {isLoading ? ( // Show loading sign
+                      <p>Loading...</p>
+                    ) :
+                    (
+                      <>
+                        <AddTodoForm onAddTodo={addTodo} todos={todoList} />
+                        <hr />
+                        <TodoList todos={todoList} onRemoveTodo={removeTodo} />
+                      </>
+                    )}
+                  
                   </>
-                )}
-            </>
-          }
+                  <div className="footer">
+                    <a href="/" className="logo">
+                      <img src="../tumbup.png" alt="Logo" />
+                    </a>
+                  </div>
+                </div>              
+              </div>                       
+          }          
           />
           <Route path='/new' element={<h1>New todo list:</h1>}/>
         </Routes>
       </BrowserRouter>
+      
     )
 }
 

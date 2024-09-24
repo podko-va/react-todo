@@ -1,18 +1,57 @@
+*{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;    
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+   /*font-style: italic;*/
+  font-weight: bold;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 770px;
+  background: linear-gradient(135deg, #00feba, #5b548a);
+  color: #fff;
+  margin: 100px auto 0;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  
+} 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 0.5em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 30ms;
+  /*animation: logo-spin infinite 10s linear;*/
+  transform: scale(0.4);
+  animation: fadeIn 10s ease-in-out, fadeOut 10s ease-in-out 10s forwards;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
+  
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -23,7 +62,25 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(60deg);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
@@ -31,10 +88,6 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
 }
 
 .read-the-docs {
