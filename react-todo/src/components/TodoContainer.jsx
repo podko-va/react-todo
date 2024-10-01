@@ -81,7 +81,8 @@ function TodoContainer({}) {
  
     const fetchdata = async() =>{
         //const url = `https://api.airtable.com/v0/${baseId}/${tableName}?view=Grid%20view`;
-        const url = `https://api.airtable.com/v0/${baseId}/${tableName}?sort[0][field]=title&[direction]=asc`;
+        const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
+        //?sort[0][field]=title&[direction]=asc`;
         const option  = {
         method: 'GET',
         headers:{
@@ -101,8 +102,16 @@ function TodoContainer({}) {
             id:record.id,
             title:record.fields.title
         }));
-
-        setTodoList(fetchDataFromAirtable)
+        function sortData(a, b) {
+            if (a.title < b.title) {
+              return -1;
+            }
+            if (a.title > b.title) {
+              return 1;
+            }
+            return 0;
+          }
+        setTodoList((fetchDataFromAirtable) => [...fetchDataFromAirtable].sort(sortData))
         setIsLoading(false)
 
         } catch (error) {
