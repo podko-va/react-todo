@@ -80,7 +80,8 @@ function TodoContainer({}) {
  
  
     const fetchdata = async() =>{
-        const url = `https://api.airtable.com/v0/${baseId}/${tableName}?view=Grid%20view`;
+        //const url = `https://api.airtable.com/v0/${baseId}/${tableName}?view=Grid%20view`;
+        const url = `https://api.airtable.com/v0/${baseId}/${tableName}?sort[0][field]=title&[direction]=asc`;
         const option  = {
         method: 'GET',
         headers:{
