@@ -10,7 +10,7 @@ const apiToken = import.meta.env.VITE_AIRTABLE_API_TOKEN;
 
     //  ?view=${viewName}`; 
 
-function TodoContainer({a,b,c}) {
+function TodoContainer({}) {
       
     
     const getIniListItem = () =>{
@@ -80,6 +80,7 @@ function TodoContainer({a,b,c}) {
  
  
     const fetchdata = async() =>{
+        const url = `https://api.airtable.com/v0/${baseId}/${tableName}?view=Grid%20view`;
         const option  = {
         method: 'GET',
         headers:{

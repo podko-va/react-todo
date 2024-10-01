@@ -16,11 +16,7 @@ function App() {
           <Route path='/' element={
             <div className="root">
               <div className="card">
-                <TodoContainer
-                  tableName={tableName}
-                  baseName={baseId}
-                  apiKey={apiToken}
-                />
+                <TodoContainer/>
                 <div className="footer">
                     <a href="/" className="logo">
                       <img src="../tumbup.png" alt="Logo" />
