@@ -51,8 +51,8 @@ function AddTodoForm({ onAddTodo, todos  }) {
     );
   };
 
-  AddTodoForm.propTypes = {
-    onAddTodo: PropTypes.func.isRequired, 
+AddTodoForm.propTypes = {
+    onAddTodo: PropTypes.func, 
   };
 
-  export default AddTodoForm;
+export default AddTodoForm;
