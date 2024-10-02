@@ -10,9 +10,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-AddTodoForm.propTypes = {
-  onAddTodo: PropTypes.func.isRequired, 
-};
-
-
-export default AddTodoForm;
