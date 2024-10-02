@@ -20,6 +20,7 @@ function TodoContainer({}) {
     const [todoList, setTodoList] = useState(getIniListItem());
     /*The "loading..." message in the add while waiting fetching data */
     const [ isLoading, setIsLoading] = useState(true);
+    const [sortDirection, setSortDirection] = useState("");
 
   
     useEffect(()=>{
@@ -49,7 +50,7 @@ function TodoContainer({}) {
         
             const data = await response.json();
             setTodoList([...todoList, { id: data.id, title: data.fields.title }]);
-
+            sortList(sortDirection);
             //setTodoList([...todoList, { id: Date.now(), title: todoTitle }]);
             } catch (error) {
                 console.error('Failed to add todo:', error);
@@ -76,9 +77,35 @@ function TodoContainer({}) {
         console.error('Failed to delete todo:', error);
     }
     };
- 
- 
- 
+
+    const sortList = (sortDirection) => {
+        switch (sortDirection) {
+          case "titleAsc":
+            onSortByTitle(false);
+            break;
+          case "titleDesc":
+            onSortByTitle(true);
+            break;
+          default:
+            onSortByTitle(false);
+        }
+        setSortDirection(sortDirection);
+      };
+
+    const onSortByTitle = (isAscending) => {
+        function sortData(a, b) {
+          if (a.title > b.title) {
+            return isAscending ? 1 : -1; 
+          }
+          if (a.title < b.title) {
+            return isAscending ? -1 : 1; 
+          }
+          return 0; 
+        };
+      
+        setTodoList((oldTodoList) => [...oldTodoList].sort(sortData));
+    };
+    
     const fetchdata = async() =>{
         //const url = `https://api.airtable.com/v0/${baseId}/${tableName}?view=Grid%20view`;
         const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
@@ -129,7 +156,7 @@ function TodoContainer({}) {
             <>
                 <AddTodoForm onAddTodo={addTodo} todos={todoList} />
                 <hr />
-                <TodoList todos={todoList} onRemoveTodo={removeTodo} />
+                <TodoList todos={todoList} onSort={sortList} onRemoveTodo={removeTodo} />
             </>
         )}
     </>
