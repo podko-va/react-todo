@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import TodoListItem from './TodoListItem';
+import TodoListItem from '../TodoListItem/TodoListItem';
 import PropTypes from 'prop-types';
-import style from './TodoListItem.module.css';
+import style from '../TodoListItem/TodoListItem.module.css';
 
-function TodoList({ todos, onSort, onRemoveTodo }) {
+function TodoList({ todos, onSort, onRemoveTodo, updateData, handleCheck }) {
   const [isAscending, setIsAscending] = useState(true); 
   
   const SortToggle = () => {
@@ -24,7 +24,7 @@ function TodoList({ todos, onSort, onRemoveTodo }) {
 
       <ul className={style.listSpacing}>      
         {todos.map(todo => (
-          <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} />
+          <TodoListItem key={todo.id} todo={todo} onRemoveTodo={onRemoveTodo} updateData={updateData} handleCheck={handleCheck}/>
         ))}
       </ul>
     </div>

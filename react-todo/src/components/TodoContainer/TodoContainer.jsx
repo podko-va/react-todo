@@ -1,5 +1,5 @@
-import TodoList from './TodoList'
-import AddTodoForm from './AddTodoForm'
+import TodoList from '../TodoList/TodoList'
+import AddTodoForm from '../AddTodoForm/AddTodoForm'
 import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 const viewName = "Grid%20view";
@@ -17,9 +17,9 @@ function TodoContainer({}) {
         const savedTodoList = localStorage.getItem("savedTodoList");
         return savedTodoList ? JSON.parse(savedTodoList) : []; 
     }
-    const [todoList, setTodoList] = useState(getIniListItem());
+    const [todoList, setTodoList] = useState([]);
     /*The "loading..." message in the add while waiting fetching data */
-    const [ isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [sortDirection, setSortDirection] = useState("");
 
   
@@ -49,7 +49,8 @@ function TodoContainer({}) {
             }
         
             const data = await response.json();
-            setTodoList([...todoList, { id: data.id, title: data.fields.title }]);
+            setTodoList([...todoList, { id: data.id, title: data.fields.title, date: data.createdTime,
+              isChecked: Boolean(data.fields.isChecked),}]);
             sortList(sortDirection);
             //setTodoList([...todoList, { id: Date.now(), title: todoTitle }]);
             } catch (error) {
@@ -78,7 +79,63 @@ function TodoContainer({}) {
     }
     };
 
-    const sortList = (sortDirection) => {
+  const updateData = async (newTitle, id) => {
+      const options = {
+      method: 'PATCH',
+      headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+          'Content-Type': 'application/json',
+          },
+      body: JSON.stringify({ fields: { title: newTitle } }),
+      };
+      console.log(newTitle);
+      const url_for_update = url + `/${id}`
+      try {
+      const response = await fetch(url_for_update, options);
+      if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Failed to update todo:', error);
+      }
+  };
+
+  const handleCheck = async(checked, id) => {
+    const options = {
+      method: 'PATCH',
+      headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+          'Content-Type': 'application/json',
+          },
+      body: JSON.stringify({ fields: { isChecked: Boolean(!checked), } }),
+      };
+    const url_for_checked = url + `/${id}`     
+
+    try {
+        const response = await fetch(url_for_checked, options);
+        if (!response.ok) {
+        const message = `Error has occurred:
+            ${response.status}`;
+            throw new Error(message);
+        }
+        const checkedTodo = todoList.map(todo => {
+            if (todo.id === id) {
+                let checkedItem = {
+                    ...todo, 
+                    isChecked: Boolean(!todo.isChecked),
+                };
+                return checkedItem;
+            } else {
+                return todo;
+            }
+        });
+        setTodoList(checkedTodo);
+    } catch (error) {
+      console.error('Failed to make checked/unchecked todo:', error);
+    }
+  };
+
+  const sortList = (sortDirection) => {
         switch (sortDirection) {
           case "titleAsc":
             onSortByTitle(false);
@@ -92,7 +149,7 @@ function TodoContainer({}) {
         setSortDirection(sortDirection);
       };
 
-    const onSortByTitle = (isAscending) => {
+  const onSortByTitle = (isAscending) => {
         function sortData(a, b) {
           if (a.title > b.title) {
             return isAscending ? 1 : -1; 
@@ -127,7 +184,9 @@ function TodoContainer({}) {
         console.log(data);
         const fetchDataFromAirtable = data.records.map(record =>({
             id:record.id,
-            title:record.fields.title
+            title:record.fields.title,
+            date: record.createdTime,
+            isChecked: Boolean(record.fields.isChecked),
         }));
         function sortData(a, b) {
             if (a.title < b.title) {
@@ -138,7 +197,7 @@ function TodoContainer({}) {
             }
             return 0;
           }
-        setTodoList((fetchDataFromAirtable) => [...fetchDataFromAirtable].sort(sortData))
+        setTodoList([...fetchDataFromAirtable].sort(sortData))
         setIsLoading(false)
 
         } catch (error) {
@@ -156,7 +215,8 @@ function TodoContainer({}) {
             <>
                 <AddTodoForm onAddTodo={addTodo} todos={todoList} />
                 <hr />
-                <TodoList todos={todoList} onSort={sortList} onRemoveTodo={removeTodo} />
+                <TodoList todos={todoList} onSort={sortList} onRemoveTodo={removeTodo} updateData={updateData}
+                        handleCheck={handleCheck}/>
             </>
         )}
     </>

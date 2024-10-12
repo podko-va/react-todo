@@ -1,5 +1,5 @@
 import React, { children, useEffect, useRef, forwardRef } from 'react';
-import style from './AddTodoForm.module.css';
+import style from '../AddTodoForm/AddTodoForm.module.css';
 import PropTypes from 'prop-types';
 
 const InputWithLabel = forwardRef(({ id, value, onInputChange, type = 'text', children }, ref) => {
@@ -24,6 +24,6 @@ const InputWithLabel = forwardRef(({ id, value, onInputChange, type = 'text', ch
 });
 
 InputWithLabel.propTypes = {
-  onAddTodo: PropTypes.func.isRequired, 
+  onAddTodo: PropTypes.func, 
 };
 export default InputWithLabel;

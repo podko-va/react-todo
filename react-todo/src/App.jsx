@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css'
-import TodoContainer from './components/TodoContainer';
-
+import TodoContainer from './components/TodoContainer/TodoContainer';
+import Home from "./components/Home/Home";
 const baseId = import.meta.env.VITE_AIRTABLE_BASE_ID;
 const tableName = import.meta.env.VITE_TABLE_NAME;
 const apiToken = import.meta.env.VITE_AIRTABLE_API_TOKEN;
