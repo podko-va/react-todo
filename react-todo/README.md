@@ -1,8 +1,137 @@
-# React + Vite
+# The To-do App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Description:
+The To-Do List Application is a user-friendly and efficient tool designed to help individuals and teams manage their tasks and projects effectively. This application allows users to create, organize, and prioritize their to-do items, ensuring that nothing important is overlooked.
 
-Currently, two official plugins are available:
+Concept:
+The core concept of the To-Do List Application is to provide a simple yet powerful platform for task management
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The To-do App is the final project for the Code The Dream `React` class.
+
+## ENV file structure
+
+
+### **Requirements for the Project (Rubric)**
+**General**
+ - [x] Project is published on public GitHub repository
+ - [x] Project includes "create-react-app" boilerplate structure
+ - [x] Project includes necessary dependencies:
+ "react-router-dom"
+ "prop-types"
+ - [x] Code compiles without errors
+ - [x] Code executes without run-time errors in the browser
+ - [x] (Bonus) Code compiles and runs without warnings
+
+**Project Structure**
+Repository includes src/ directory with the following structure:
+
+ - [x] index.js(application entry-point)
+ - [x] App.js (root component)
+ - [x] components/ directory with the following files:
+ - [x] AddTodoForm.js
+ - [x] InputWithLabel.js
+ - [x] TodoList.js
+ - [x] TodoListItem.js
+ - [x] (Bonus) TodoContainer.js
+ - [x] One or more CSS modules associated with the components above
+
+**App Component**
+App.js contains the following:
+ - [x]  Functional React component named App
+ - [x] Return statement that renders the following JSX:
+ - [x] Router from "react-router-dom"
+ - [x] Switch component with two or more Routes that are navigable
+ - [ ] One route for "home" or "landing" page
+ - [ ] One or more routes which render a TodoList component
+ - [ ] (Bonus) Navigation menu
+**TodoContainer Component**
+- [x] If project is missing (Bonus) TodoContainer.js, then apply these requirements to App.js instead
+TodoContainer.js contains the following:
+ - [x] Functional React component named TodoContainer with one prop: tableName
+ - [x] Correct propTypes for the prop(s) listed
+ - [x] State variable named todoList with default value of an empty Array ([])
+ - [x] State variable named isLoading with default value of true
+ - [x] useEffect hook with dependency tableName (prop) and callback function that does the following:
+ - [x] Using Fetch API, GET table records from Airtable for the given tableName
+ - [x] Parse JSON response
+ - [x] Sort response data by one or more properties
+ - [x] Set todoList state to sorted data
+ - [x] Set isLoading to false
+ Function named addTodo with parameter title that does the following:
+ - [x] Using Fetch API, POST new record to Airtable with the given title field value
+ - [x] Parse JSON response
+ - [x] Set todoList state to new Array containing the added record
+ - [x] (Bonus) Re-sort list data
+ Function named removeTodo with parameter id that does the following:
+ - [x] Using Fetch API, DELETE record from Airtable given id
+ - [x] Parse JSON response
+ - [x] Set todoList state to new Array NOT containing the removed record
+ - [x] Return statement that renders the following JSX:
+ - [x]  Heading level-one with dynamic tableName
+
+ **AddTodoForm Component**
+ Conditional rendering based on isLoading state:
+ - [x] If true, paragraph that reads "Loading..." or some equivalent message
+ - [x] If false, TodoList Component
+
+**AddTodoForm Component**
+AddTodoForm.js contains the following:
+ - [x] Functional React component named AddTodoForm with one prop: onAddTodo
+ - [x] Correct propTypes for the prop(s) listed
+ - [x] State variable named todoTitle with default value of an empty String ("")
+ - [ ] Function named handleTitleChange with parameter event that does the following:
+ - [ ] Set todoTitle to given value from event
+ - [ ] Function named handleAddTodo with parameter event that does the following:
+ - [ ] Prevent default event behavior (i.e. page refresh)
+ - [ ] Invoke callback prop onAddTodo and pass todoTitle from state
+ - [ ] Reset todoTitle value to an empty String ("")
+ - [ ] Return statement that renders the following JSX:
+ - [ ] Form element with submit event handler
+
+ **InputWithLabel Component**
+ - [ ] Button element with type "submit"
+
+**InputWithLabel Component**
+InputWithLabel.js contains the following:
+ - [ ] Functional React component named InputWithLabel with three props: todoTitle, handleTitleChange, and children
+ - [ ] Correct propTypes for the prop(s) listed
+ - [ ] Ref for Input element
+ - [ ] useEffect hook with empty dependency list and callback function that does the following:
+ - [ ] Focus input ref
+ - [ ] Return statement that renders the following JSX:
+ - [ ] Label element which renders text from children prop
+ - [ ] Input element which is configured as a "controlled component" with "value" and "onChange" attributes
+
+**TodoList Component**
+TodoList.js contains the following:
+ - [ ]  Functional React component named TodoList with two props: todoList and onRemoveTodo
+ - [ ] Correct propTypes for the prop(s) listed
+ - [ ] Return statement that renders the following JSX:
+ - [ ] Unordered list element
+ - [ ] map statement which loops through todoList Array and returns TodoListItem Component
+ 
+**TodoListItem Component**
+TodoListItem.js contains the following:
+
+ - [ ] Functional React component named TodoListItem with two props: todo and onRemoveTodo
+ - [ ] Correct propTypes for the prop(s) listed
+ - [ ] Return statement that renders the following JSX:
+ - [ ] List-item element
+ - [ ] Title from todo Object
+ - [ ] Button element with text "Remove" and "onClick" event handler
+
+**Styling**
+- [ ] Use of third-party CSS libraries is discouraged for this project, we want to see your understanding of basic CSS concepts like rulesets, properties, and media queries
+
+- [ ]  Project includes at least one CSS module (though, it is encouraged that you have a different module for each React component)
+ - [ ] Application follows the style requirements outlines below:
+ - [ ] Change the background color of the page body
+ - [ ] Change the default text color
+ - [ ] Customize the font family
+ - [ ] (Bonus) Load in a font family from Google Fonts
+ - [ ] (Bonus) Customize style of navigation items
+ - [ ] Add spacing (padding/margin) between elements
+ - [ ] Change the font size, weight, and color of all headings
+ - [ ] Customize input and button styles
+ - [ ] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
+ - [ ] (Bonus) Add multi-media usage (i.e. iconography)
