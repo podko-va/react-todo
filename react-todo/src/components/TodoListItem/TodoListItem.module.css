@@ -1,0 +1,195 @@
+.ListItem {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    max-width: 500px;
+    word-wrap: break-word; 
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .listContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #5b548a;
+    border-radius: 4px;
+    transition: background-color 0.25s ease-in-out;
+  }
+
+  .checkbox:checked {
+    background-color: #5b548a;
+    border-color:#5b548a;
+  }
+
+.label,
+.lineThrough {
+  font-size: 16px;
+  color: #fff;
+  padding: 5px;
+  word-wrap: break-word;
+  max-width: 300px;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+  opacity: 0.8;
+  color: #f6c1c1;
+}
+
+.date {
+  font-size: 14px;
+  color: #fff;
+  margin-left: 20px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+    display: inline-block;
+    background: #5b548a;
+    color: #fff;
+    padding: 5px 5px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.button:hover {
+  background-color: #4a437a;
+}
+
+.buttonspace {
+  display: inline-block;
+  background: #5b548a;
+  color: #fff;
+  padding: 5px 5px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-top: 5px;
+}
+
+.actionsGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+}
+
+.editForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 10px;
+}
+
+
+.inputField {
+  flex-grow: 1;
+  padding: 8px 10px;
+  font-size: 16px;
+  color: #000;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.25s ease-in-out;
+}
+
+.inputField:focus {
+  border-color: #5b548a;
+  outline: none;
+}
+
+
+.saveButton {
+  display: inline-block;
+  background: #5b548a;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.saveButton:hover {
+  background-color: #4a437a;
+}
+
+@media all and (max-width: 900px) {
+  .editForm {
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 15px; 
+  }
+
+  .inputField {
+    width: 100%;
+    font-size: 14px; 
+  }
+
+  .saveButton {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+
+@media all and (max-width: 500px) {
+  .editForm {
+    flex-direction: column; 
+    gap: 10px;
+  }
+
+  .inputField {
+    font-size: 12px; 
+    padding: 6px 8px; 
+  }
+
+  .saveButton {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  
+  .ListItem {
+    flex-direction: column; 
+    padding: 10px;
+  }
+
+  
+  .checkbox,
+  .button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px; 
+  }
+}
+
