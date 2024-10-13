@@ -10,8 +10,8 @@ function TodoListItem({ todo, onRemoveTodo, updateData, handleCheck }) {
   const [checked, setChecked] = useState(todo.isChecked);
 
   const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric' });
-  console.log(date)
-  console.log(todo)
+  // console.log(date)
+  // console.log(todo)
   const handleCheckInput = (e) => {
         setChecked(e.target.checked);
         handleCheck(checked, todo.id);

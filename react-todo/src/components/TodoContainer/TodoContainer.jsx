@@ -10,9 +10,8 @@ const apiToken = import.meta.env.VITE_AIRTABLE_API_TOKEN;
 
     //  ?view=${viewName}`; 
 
-function TodoContainer({}) {
+function TodoContainer({flag=0}) {
       
-    
     const getIniListItem = () =>{
         const savedTodoList = localStorage.getItem("savedTodoList");
         return savedTodoList ? JSON.parse(savedTodoList) : []; 
@@ -24,8 +23,8 @@ function TodoContainer({}) {
 
   
     useEffect(()=>{
-        fetchdata();
-    },[]);
+        fetchdata(flag);
+    }, [flag]);
 
     useEffect(() => {
         if (!isLoading) {
@@ -163,7 +162,7 @@ function TodoContainer({}) {
         setTodoList((oldTodoList) => [...oldTodoList].sort(sortData));
     };
     
-    const fetchdata = async() =>{
+    const fetchdata = async(flag) =>{
         //const url = `https://api.airtable.com/v0/${baseId}/${tableName}?view=Grid%20view`;
         const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
         //?sort[0][field]=title&[direction]=asc`;
@@ -181,13 +180,29 @@ function TodoContainer({}) {
         }
         const data = await res.json();
 
-        console.log(data);
-        const fetchDataFromAirtable = data.records.map(record =>({
-            id:record.id,
-            title:record.fields.title,
-            date: record.createdTime,
-            isChecked: Boolean(record.fields.isChecked),
-        }));
+        //console.log(data);
+        const fetchDataFromAirtable = data.records
+        .filter(record => {
+            // Получаем значение isChecked
+            const isChecked = Boolean(record.fields.isChecked);
+            
+            // Условие для фильтрации в зависимости от значения flag
+            if (flag === 'all') {
+                return true; // Выводим все записи
+            } else if (flag === 'completed') {
+                return Boolean(record.fields.isChecked); // Выводим только записи с isChecked = true
+            } else if (flag === 'pending') {
+                return !Boolean(record.fields.isChecked); // Выводим только записи с isChecked = false
+            }
+            
+            return false; // Если flag не совпадает ни с одним значением, ничего не выводим
+            })
+            .map(record => ({
+                id: record.id,
+                title: record.fields.title,
+                date: record.createdTime,
+                isChecked: Boolean(record.fields.isChecked),
+            }));
         function sortData(a, b) {
             if (a.title < b.title) {
               return -1;

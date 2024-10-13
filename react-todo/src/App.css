@@ -23,13 +23,14 @@ body {
 
 .card {
   width: 100%;
-  max-width: 770px;
+  max-width: 870px;
   background: linear-gradient(135deg, #00feba, #5b548a);
   color: #fff;
   margin: 100px auto 0;
   border-radius: 20px;
   padding: 40px 35px;
   text-align: center;
+  
 }
 .footer {
   display: flex;
@@ -92,4 +93,143 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+.app {
+  display: flex;
+}
+
+header {
+  position: relative;
+}
+
+.settings-button {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  align-items: left;
+  
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: -200px; /* Скрыта по умолчанию */
+  width: 200px;
+  height: 100vh;
+  background:  #645e8a;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 20px;
+  padding: 40px 35px;
+  align-items: center;
+}
+
+.sidebar.visible {
+  left: 0; /* Показать панель */
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  text-align: center; /* Центровка текста */
+}
+.sidebar ul li {
+  margin: 20px 0; /* Отступы между ссылками */
+}
+
+
+.sidebar ul li a {
+  color: #fff; /* Белый цвет текста */
+  text-decoration: none;
+  font-size: 18px; /* Размер шрифта */
+  font-weight: bold;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  
+}
+
+nav ul li {
+  padding: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Стили для экранов до 900px (планшеты) */
+@media all and (max-width: 900px) {
+  .card {
+    max-width: 600px; /* Уменьшаем ширину для планшетов */
+    margin: 50px auto 0; /* Уменьшаем отступ сверху */
+    padding: 30px 25px; /* Уменьшаем внутренние отступы */
+  }
+
+  .sidebar {
+    width: 150px; /* Уменьшаем ширину боковой панели */
+  }
+
+  .sidebar ul li a {
+    font-size: 16px; /* Уменьшаем размер шрифта ссылок */
+  }
+
+  .footer {
+    padding: 0.5rem; /* Уменьшаем отступы в футере */
+  }
+
+  .logo {
+    height: 4em; /* Уменьшаем логотип */
+    transform: scale(0.3); /* Делаем его меньше */
+  }
+
+  .settings-button {
+    font-size: 20px; /* Уменьшаем размер кнопки настроек */
+  }
+}
+
+/* Стили для экранов до 500px (мобильные телефоны) */
+@media all and (max-width: 500px) {
+  .card {
+    max-width: 100%; /* Делаем ширину карточки 100% */
+    margin: 30px auto 0;
+    padding: 20px 15px; /* Ещё больше уменьшаем отступы */
+  }
+
+  .sidebar {
+    width: 100%; /* Боковая панель занимает всю ширину */
+    height: 300px; /* Устанавливаем фиксированную высоту */
+    top: -300px; /* Скроем панель за пределами экрана */
+    left: 0; /* Центруем */
+    transition: top 0.3s ease; /* Плавный выезд сверху */
+  }
+
+  .sidebar.visible {
+    top: 0; /* Показать панель сверху */
+  }
+
+  .sidebar ul li {
+    margin: 10px 0; /* Уменьшаем отступы между ссылками */
+  }
+
+  .sidebar ul li a {
+    font-size: 14px; /* Уменьшаем размер текста для мобильных */
+  }
+
+  .footer {
+    padding: 0.3rem; /* Ещё сильнее уменьшаем отступы в футере */
+  }
+
+  .logo {
+    height: 3em; /* Делаем логотип ещё меньше */
+    transform: scale(0.2);
+  }
+
+  .settings-button {
+    font-size: 18px; /* Уменьшаем кнопку для мобильных */
+  }
 }
