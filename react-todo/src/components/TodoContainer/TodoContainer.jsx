@@ -135,18 +135,24 @@ function TodoContainer({flag=0}) {
   };
 
   const sortList = (sortDirection) => {
-        switch (sortDirection) {
-          case "titleAsc":
-            onSortByTitle(false);
-            break;
-          case "titleDesc":
-            onSortByTitle(true);
-            break;
-          default:
-            onSortByTitle(false);
-        }
-        setSortDirection(sortDirection);
-      };
+    switch (sortDirection) {
+      case "titleAsc":
+        onSortByTitle(true);  // Сортировка по заголовку по возрастанию
+        break;
+      case "titleDesc":
+        onSortByTitle(false);  // Сортировка по заголовку по убыванию
+        break;
+      case "dateAsc":
+        onSortByDate(true);  // Сортировка по дате по возрастанию
+        break;
+      case "dateDesc":
+        onSortByDate(false);  // Сортировка по дате по убыванию
+        break;
+      default:
+        onSortByTitle(true);  // Сортировка по заголовку по умолчанию
+    }
+    setSortDirection(sortDirection);
+  };
 
   const onSortByTitle = (isAscending) => {
         function sortData(a, b) {
@@ -160,6 +166,16 @@ function TodoContainer({flag=0}) {
         };
       
         setTodoList((oldTodoList) => [...oldTodoList].sort(sortData));
+    };
+    
+    const onSortByDate = (isAscending) => {
+      function sortData(a, b) {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return isAscending ? dateA - dateB : dateB - dateA;
+      }
+    
+      setTodoList((oldTodoList) => [...oldTodoList].sort(sortData));
     };
     
     const fetchdata = async(flag) =>{

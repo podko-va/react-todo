@@ -9,7 +9,9 @@ The core concept of the To-Do List Application is to provide a simple yet powerf
 The To-do App is the final project for the Code The Dream `React` class.
 
 ## ENV file structure
-
+VITE_AIRTABLE_BASE_ID 
+VITE_TABLE_NAME 
+VITE_AIRTABLE_API_TOKEN
 
 ### **Requirements for the Project (Rubric)**
 **General**
@@ -41,9 +43,9 @@ App.js contains the following:
  - [x] Return statement that renders the following JSX:
  - [x] Router from "react-router-dom"
  - [x] Switch component with two or more Routes that are navigable
- - [ ] One route for "home" or "landing" page
- - [ ] One or more routes which render a TodoList component
- - [ ] (Bonus) Navigation menu
+ - [x] One route for "home" or "landing" page
+ - [x] One or more routes which render a TodoList component
+ - [x] (Bonus) Navigation menu
 **TodoContainer Component**
 - [x] If project is missing (Bonus) TodoContainer.js, then apply these requirements to App.js instead
 TodoContainer.js contains the following:
@@ -67,7 +69,7 @@ TodoContainer.js contains the following:
  - [x] Parse JSON response
  - [x] Set todoList state to new Array NOT containing the removed record
  - [x] Return statement that renders the following JSX:
- - [x]  Heading level-one with dynamic tableName
+ - [x] Heading level-one with dynamic tableName
 
  **AddTodoForm Component**
  Conditional rendering based on isLoading state:
@@ -79,59 +81,59 @@ AddTodoForm.js contains the following:
  - [x] Functional React component named AddTodoForm with one prop: onAddTodo
  - [x] Correct propTypes for the prop(s) listed
  - [x] State variable named todoTitle with default value of an empty String ("")
- - [ ] Function named handleTitleChange with parameter event that does the following:
- - [ ] Set todoTitle to given value from event
- - [ ] Function named handleAddTodo with parameter event that does the following:
- - [ ] Prevent default event behavior (i.e. page refresh)
- - [ ] Invoke callback prop onAddTodo and pass todoTitle from state
- - [ ] Reset todoTitle value to an empty String ("")
- - [ ] Return statement that renders the following JSX:
- - [ ] Form element with submit event handler
+ - [x] Function named handleTitleChange with parameter event that does the following:
+ - [x] Set todoTitle to given value from event
+ - [x] Function named handleAddTodo with parameter event that does the following:
+ - [x] Prevent default event behavior (i.e. page refresh)
+ - [x] Invoke callback prop onAddTodo and pass todoTitle from state
+ - [x] Reset todoTitle value to an empty String ("")
+ - [x] Return statement that renders the following JSX:
+ - [x] Form element with submit event handler
 
  **InputWithLabel Component**
- - [ ] Button element with type "submit"
+ - [x] Button element with type "submit"
 
 **InputWithLabel Component**
 InputWithLabel.js contains the following:
- - [ ] Functional React component named InputWithLabel with three props: todoTitle, handleTitleChange, and children
- - [ ] Correct propTypes for the prop(s) listed
- - [ ] Ref for Input element
- - [ ] useEffect hook with empty dependency list and callback function that does the following:
- - [ ] Focus input ref
- - [ ] Return statement that renders the following JSX:
- - [ ] Label element which renders text from children prop
- - [ ] Input element which is configured as a "controlled component" with "value" and "onChange" attributes
+ - [x] Functional React component named InputWithLabel with three props: todoTitle, handleTitleChange, and children
+ - [x] Correct propTypes for the prop(s) listed
+ - [x] Ref for Input element
+ - [x] useEffect hook with empty dependency list and callback function that does the following:
+ - [x] Focus input ref
+ - [x] Return statement that renders the following JSX:
+ - [x] Label element which renders text from children prop
+ - [x] Input element which is configured as a "controlled component" with "value" and "onChange" attributes
 
 **TodoList Component**
 TodoList.js contains the following:
- - [ ]  Functional React component named TodoList with two props: todoList and onRemoveTodo
- - [ ] Correct propTypes for the prop(s) listed
- - [ ] Return statement that renders the following JSX:
- - [ ] Unordered list element
- - [ ] map statement which loops through todoList Array and returns TodoListItem Component
+ - [x]  Functional React component named TodoList with two props: todoList and onRemoveTodo
+ - [x] Correct propTypes for the prop(s) listed
+ - [x] Return statement that renders the following JSX:
+ - [x] Unordered list element
+ - [x] map statement which loops through todoList Array and returns TodoListItem Component
  
 **TodoListItem Component**
 TodoListItem.js contains the following:
 
- - [ ] Functional React component named TodoListItem with two props: todo and onRemoveTodo
- - [ ] Correct propTypes for the prop(s) listed
- - [ ] Return statement that renders the following JSX:
- - [ ] List-item element
- - [ ] Title from todo Object
- - [ ] Button element with text "Remove" and "onClick" event handler
+ - [x] Functional React component named TodoListItem with two props: todo and onRemoveTodo
+ - [x] Correct propTypes for the prop(s) listed
+ - [x] Return statement that renders the following JSX:
+ - [x] List-item element
+ - [x] Title from todo Object
+ - [x] Button element with text "Remove" and "onClick" event handler
 
 **Styling**
 - [ ] Use of third-party CSS libraries is discouraged for this project, we want to see your understanding of basic CSS concepts like rulesets, properties, and media queries
 
-- [ ]  Project includes at least one CSS module (though, it is encouraged that you have a different module for each React component)
- - [ ] Application follows the style requirements outlines below:
+- [x]  Project includes at least one CSS module (though, it is encouraged that you have a different module for each React component)
+ - [x] Application follows the style requirements outlines below:
  - [ ] Change the background color of the page body
- - [ ] Change the default text color
- - [ ] Customize the font family
+ - [x] Change the default text color
+ - [x] Customize the font family
  - [ ] (Bonus) Load in a font family from Google Fonts
- - [ ] (Bonus) Customize style of navigation items
- - [ ] Add spacing (padding/margin) between elements
- - [ ] Change the font size, weight, and color of all headings
- - [ ] Customize input and button styles
- - [ ] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
+ - [x] (Bonus) Customize style of navigation items
+ - [x] Add spacing (padding/margin) between elements
+ - [x] Change the font size, weight, and color of all headings
+ - [x] Customize input and button styles
+ - [x] Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
  - [ ] (Bonus) Add multi-media usage (i.e. iconography)

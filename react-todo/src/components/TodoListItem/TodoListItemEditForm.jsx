@@ -12,8 +12,20 @@ const ItemEditForm = ( {todo, newTitle, setNewTitle, updateData, setEditing } ) 
     const handleEditItem = (event) => {
         event.preventDefault();
         if (!newTitle) {
-            throw new Error(`Error: create new title`);
+            alert('Todo title cannot be empty');
         } else {
+            if (newTitle.trim() === '') {
+                alert('Todo title cannot be empty');
+                return;
+              }
+            if (newTitle.length > 100) {
+                alert('Todo title cannot exceed 100 characters');
+                return;
+            }
+            if (newTitle.length < 3) {
+              alert('The Todo title must be longer');
+              return;
+            }
             setEditing(true);
             updateData(newTitle, todo.id);
         }
