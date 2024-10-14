@@ -1,36 +1,54 @@
-.homePage {
-    padding: 20px;
-    background-color: #f0f0f0; /* Example background color */
-  }
-  
-  .welcomeHeader {
+.homeContainer {
+    padding: 40px 35px;
     text-align: center;
-    margin-bottom: 30px;
+    color: #fff;
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 100%; /* Set max-width to 100% to fit within the card */
+    width: 100%; /* Ensures it takes the full width of the parent */
+    box-sizing: border-box; /* Ensures padding is included in width */
   }
   
-  .features {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
+  .homeContainer h1,
+  .homeContainer h2,
+  .homeContainer p {
+    margin: 1rem 0;
+    word-wrap: break-word; /* Ensures long words wrap */
+    overflow-wrap: break-word; /* Ensures long words wrap */
+  }
+  .homeContainer h1 {
+    font-size: 2rem;
   }
   
-  .featureCard {
-    background-color: white; /* Example card background */
-    border: 1px solid #ddd; /* Example border */
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 200px; /* Example card width */
+  .homeContainer h2 {
+    font-size: 1.5rem;
+  }
+  .instructionsList {
+    list-style: none;
+    text-align: left;
+    margin: 20px auto;
+    width: 100%;  /* Centering instructions */
+    padding: 0;
   }
   
+  .instructionsList li {
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+  
+  .inspiration {
+    list-style: none;
+    margin-top: 10px;
+    font-size: 16px;
+    font-style: italic;
+    color: #f6c1c1; /* Light color for inspiration quote */
+  }
+
   .featureLink {
-    text-decoration: none;
-    color: #007bff; /* Example link color */
-  }
-  
-  .motivationalSentence {
-    text-align: center;
-    margin-top: 20px;
-    font-style: italic; /* Example style for motivational sentence */
-    font-weight: bold;
-  }
+    color: #0a0a0a;
+    text-decoration: underline;
+}
+
+.featureLink:hover {
+    text-decoration: none; /* Убираем подчеркивание при наведении */
+}

@@ -74,15 +74,15 @@ const MainElement = ({ flag, toggleSidebar, hideSidebar, isSidebarVisible }) => 
   );
 };
 
-const Sidebar = ({ isVisible, onMouseLeave }) => {
+const Sidebar = ({ isVisible, onMouseLeave, hideSidebar }) => {
   return (
     <div className={`sidebar ${isVisible ? 'visible' : ''}`} onMouseLeave={onMouseLeave}>
       <nav>
         <ul>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/">All Todos</Link></li>
-          <li><Link to="/pending-todos">Pending Todos</Link></li>
-          <li><Link to="/completed-todos">Completed Todos</Link></li>
+          <li><Link to="/home" onClick={hideSidebar}>Home</Link></li>
+          <li><Link to="/" onClick={hideSidebar}>All Todos</Link></li>
+          <li><Link to="/pending-todos" onClick={hideSidebar}>Pending Todos</Link></li>
+          <li><Link to="/completed-todos" onClick={hideSidebar}>Completed Todos</Link></li>
         </ul>
       </nav>
     </div>

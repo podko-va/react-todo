@@ -23,14 +23,16 @@ body {
 
 .card {
   width: 100%;
-  max-width: 870px;
+  max-width: 570px;
+  max-height: 900px; 
+  overflow-y: auto;
   background: linear-gradient(135deg, #00feba, #5b548a);
   color: #fff;
   margin: 100px auto 0;
   border-radius: 20px;
   padding: 40px 35px;
   text-align: center;
-  
+  position: relative;  
 }
 .footer {
   display: flex;
@@ -117,7 +119,7 @@ header {
   top: 0;
   left: -200px; /* Скрыта по умолчанию */
   width: 200px;
-  height: 100vh;
+  height: 100%; 
   background:  #645e8a;
   transition: left 0.3s ease;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -125,10 +127,15 @@ header {
   border-radius: 20px;
   padding: 40px 35px;
   align-items: center;
+  opacity: 0;
+}
+.sidebar_v123{
+  position: absolute;
 }
 
 .sidebar.visible {
   left: 0; /* Показать панель */
+  opacity: 1;
 }
 .sidebar ul {
   list-style: none;

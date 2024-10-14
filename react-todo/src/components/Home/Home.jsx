@@ -1,43 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Home.module.css';
+import styles from './Home.module.css';
 
 const Home = () => {
   return (
-    <div className="home-page">
-      <header className="welcome-header">
-        <h1>Welcome to your</h1>
-        <h1>Productivity Center</h1>
-        <p>Organize your tasks and achieve your goals with ease</p>
-      </header>
-      
-      <div className="features">
-        <div className="feature-card">
-          <h2>All Tasks</h2>
-          <p>View all tasks in one place</p>
-          <Link to="/" className="feature-link">Go</Link>
-        </div>
-        <div className="feature-card">
-          <h2>Completed Tasks</h2>
-          <p>View completed tasks</p>
-          <Link to="/completed-todos" className="feature-link">View</Link>
-        </div>
-        <div className="feature-card">
-          <h2>Pending Tasks</h2>
-          <p>View pending tasks</p>
-          <Link to="/pending-todos" className="feature-link">View</Link>
-        </div>
-      </div>
+    <div class={styles.homeContainer}>
+      <h2>Project Description: Todo App</h2>
+      <h2>Instructions:</h2>
+      <ul class = {styles.instructionsList}>
+        <li><strong>Add New Todo:</strong> Enter your task in the input field and click the "Add" button.</li>
+        <li><strong>Mark as Completed:</strong> Click the checkbox next to a todo to mark it as completed.</li>
+        <li><strong>Delete Todo:</strong> Click the "Delete" button next to the todo you wish to remove.</li>
+        <li><strong>Sort Todos:</strong> Use the "Sort by title" and "Sort by date" buttons to organize your tasks.</li>
+      </ul>
 
-      <div className="motivationalSentence">
-        <h2>"The secret of success is to begin."</h2>
-      </div>
+      <p>View all tasks in one place:</p>
+          <Link to="/" class = {styles.featureLink}>Here's to future wins!</Link>
 
-      <div className="calendar">
-        {/* Insert calendar component here */}
-      </div>
-    </div>
+      {/* <p class={styles.inspiration}>“Success is the sum of small efforts, repeated day in and day out.”</p>*/}
+    </div> 
   );
-};
+};  
+
 
 export default Home;
